@@ -29,4 +29,4 @@ jobs:
         context: .  # The context is your application folder
         file: ./Dockerfile  # Path to your Dockerfile
         push: true  # Push the image to the registry
-        tags: registry.gitlab.com/GabdaSilva07/silva-startup:api-${{ steps.timestamp.outputs.timestamp }}  # Image tag
+        tags: registry.gitlab.com/gabdasilva07/silva-startup:api-${{ steps.timestamp.outputs.timestamp }}  # Image tag
