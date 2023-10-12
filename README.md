@@ -21,7 +21,12 @@
 
  To build the Docker image and run it, follow these steps:
 
- 1. Build the Docker image and run it by executing `docker build -t silva-startup . && docker run -p 3000:3000 silva-startup`.
+ 1. Build the Docker image by executing `docker build -t silva-startup .`.
+ 2. Run the Docker image by executing `docker run -p 3000:3000 silva-startup`.
+
+ Alternatively, you can use Docker Compose to build and run the application:
+
+ 1. Build and run the Docker image using Docker Compose by executing `docker-compose up --build`.
 
  Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
