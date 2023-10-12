@@ -1,35 +1,37 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
   :root {
-    --background: #F6F6F6;
+    --background: #f6f6f6;
     --foreground: #111111;
 
-    --card: #F6F6F6;
+    --card: #f6f6f6;
     --card-foreground: #111111;
 
-    --popover: #F6F6F6;
+    --popover: #f6f6f6;
     --popover-foreground: #111111;
 
-    --primary: #113E21;
-    --primary-foreground: #F6F6F6;
+    --primary: #113e21;
+    --primary-foreground: #f6f6f6;
 
-    --secondary: #2F2F2F;
-    --secondary-foreground: #113E21;
+    --secondary: #2f2f2f;
+    --secondary-foreground: #113e21;
 
-    --muted: #2F2F2F;
+    --muted: #2f2f2f;
     --muted-foreground: #111111;
 
-    --accent: #FFCB74;
-    --accent-foreground: #113E21;
+    --accent: #ffcb74;
+    --accent-foreground: #113e21;
 
-    --destructive: #FF0000; /* Kept as is, adjust as needed */
-    --destructive-foreground: #F6F6F6;
+    --destructive: #ff0000; /* Kept as is, adjust as needed */
+    --destructive-foreground: #f6f6f6;
 
-    --border: #2F2F2F;
-    --input: #2F2F2F;
+    --border: #2f2f2f;
+    --input: #2f2f2f;
     --ring: #111111;
 
     --radius: 0.5rem;
@@ -37,58 +39,73 @@
 
   .dark {
     --background: #111111;
-    --foreground: #F6F6F6;
+    --foreground: #f6f6f6;
 
     --card: #111111;
-    --card-foreground: #F6F6F6;
+    --card-foreground: #f6f6f6;
 
     --popover: #111111;
-    --popover-foreground: #F6F6F6;
+    --popover-foreground: #f6f6f6;
 
-    --primary: #F6F6F6;
-    --primary-foreground: #113E21;
+    --primary: #f6f6f6;
+    --primary-foreground: #113e21;
 
     --secondary: #111111;
-    --secondary-foreground: #F6F6F6;
+    --secondary-foreground: #f6f6f6;
 
     --muted: #111111;
-    --muted-foreground: #2F2F2F;
+    --muted-foreground: #2f2f2f;
 
     --accent: #111111;
-    --accent-foreground: #FFCB74;
+    --accent-foreground: #ffcb74;
 
-    --destructive: #FF0000; /* Kept as is, adjust as needed */
-    --destructive-foreground: #F6F6F6;
+    --destructive: #ff0000; /* Kept as is, adjust as needed */
+    --destructive-foreground: #f6f6f6;
 
     --border: #111111;
     --input: #111111;
-    --ring: #2F2F2F;
+    --ring: #2f2f2f;
   }
 }
 
 @layer base {
-  html, body {
-    @apply h-full w-full overflow-hidden;
+  html,
+  body,
+  div,
+  h1,
+  h2,
+  h3,
+  p {
+    margin: 0;
+    padding: 0;
   }
-
-  main {
-    @apply h-full w-full overflow-auto snap-y snap-mandatory duration-700;
-    scroll-behavior: smooth;
+  /* Reset some browser defaults */
+  html,
+  body {
+    height: 100%;
+    overflow-x: hidden;
     scroll-snap-type: y mandatory;
-    /* Add transition for smoother scrolling */
-    transition: scroll-snap-type 0.3s ease-in-out;
+    scroll-behavior: smooth;
+    transition: scroll-snap-type 0.7s ease-in-out;
   }
 
   * {
-    @apply p-0 m-0 box-border;
-    font-family: "DM Sans", sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  main {
+    height: 100%;
+    scroll-snap-type: y mandatory;
+    transition: scroll-snap-type 0.3s ease-in-out;
   }
 
   section {
-    @apply h-screen snap-center overflow-hidden;
-    scroll-snap-align: start;
-    /* Add transition for smoother snapping */
+    height: 100vh;
+    width: 100vw; /* Added */
+    scroll-snap-align: start; /* Modified from start to center */
+    overflow: hidden; /* Added */
     transition: scroll-snap-align 0.3s ease-in-out;
   }
 }
-
