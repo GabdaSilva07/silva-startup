@@ -67,10 +67,28 @@
 }
 
 @layer base {
-  * {
-    @apply border-border;
+  html, body {
+    @apply h-full w-full overflow-hidden;
   }
-  body {
-    @apply bg-background text-foreground;
+
+  main {
+    @apply h-full w-full overflow-auto snap-y snap-mandatory duration-700;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    /* Add transition for smoother scrolling */
+    transition: scroll-snap-type 0.3s ease-in-out;
+  }
+
+  * {
+    @apply p-0 m-0 box-border;
+    font-family: "DM Sans", sans-serif;
+  }
+
+  section {
+    @apply h-screen snap-center overflow-hidden;
+    scroll-snap-align: start;
+    /* Add transition for smoother snapping */
+    transition: scroll-snap-align 0.3s ease-in-out;
   }
 }
+
