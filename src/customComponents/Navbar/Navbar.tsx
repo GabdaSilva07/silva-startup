@@ -1,76 +1,37 @@
 "use client"
 
-import * as React from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import * as React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-import { siteConfig } from "@/config/siteConfig"
-import { cn } from "@/lib/utils"
-
+import { siteConfig } from "@/config/siteConfig";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";  // Assuming Shadcn provides a button component
 
 export default function MainNav() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
-    <div className="mr-4 hidden md:flex">
-      <Link href="/" className="mr-6 flex items-center space-x-2">
-
-        <span className="hidden font-bold sm:inline-block">
+    <div className="flex justify-between items-center p-4 bg-background shadow-md">
+      <div className="flex justify-start items-center space-x-12">
+        <Link href="/" className="text-xl font-bold uppercase text-foreground">
           {siteConfig.name}
-        </span>
-      </Link>
-      <nav className="flex items-center space-x-6 text-sm font-medium">
-        <Link
-          href="/docs"
-          className={cn(
-            "transition-colors hover:text-foreground/80",
-            pathname === "/docs" ? "text-foreground" : "text-foreground/60"
-          )}
-        >
-          Documentation
         </Link>
-        <Link
-          href="/docs/components"
-          className={cn(
-            "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/docs/components")
-              ? "text-foreground"
-              : "text-foreground/60"
-          )}
-        >
-          Components
-        </Link>
-        <Link
-          href="/themes"
-          className={cn(
-            "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/themes")
-              ? "text-foreground"
-              : "text-foreground/60"
-          )}
-        >
-          Themes
-        </Link>
-        <Link
-          href="/examples"
-          className={cn(
-            "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/examples")
-              ? "text-foreground"
-              : "text-foreground/60"
-          )}
-        >
-          Examples
-        </Link>
-        <Link
-          href={siteConfig.links.github}
-          className={cn(
-            "hidden text-foreground/60 transition-colors hover:text-foreground/80 lg:block"
-          )}
-        >
-          GitHub
-        </Link>
-      </nav>
+        <nav className="hidden md:flex space-x-4">
+          {siteConfig.pages.map((page) => (
+            <Link key={page.name} href={page.path} className={cn(
+              "hover:text-primary transition-all duration-500 ease-in-out border-b-2 border-transparent hover:border-primary",
+              pathname === page.path ? "text-primary" : "text-foreground"
+            )}>
+              {page.name}
+            </Link>
+          ))}
+        </nav>
+      </div>
+      <Button className="ml-4 bg-primary text-primary-foreground rounded-full py-2 px-6">
+        Request Appointment
+      </Button>
     </div>
-  )
+  );
 }
+
