@@ -15,17 +15,17 @@
     --popover: #f6f6f6;
     --popover-foreground: #111111;
 
-    --primary: #113e21;
+    --primary: #f6f6f6;
     --primary-foreground: #f6f6f6;
 
-    --secondary: #2f2f2f;
-    --secondary-foreground: #113e21;
+    --secondary: #f6f6f6;
+    --secondary-foreground: #2f2f2f;
 
     --muted: #2f2f2f;
     --muted-foreground: #111111;
 
-    --accent: #ffcb74;
-    --accent-foreground: #113e21;
+    --accent: #113e21;
+    --accent-foreground: #ffcb74;
 
     --destructive: #ff0000; /* Kept as is, adjust as needed */
     --destructive-foreground: #f6f6f6;
@@ -56,8 +56,8 @@
     --muted: #111111;
     --muted-foreground: #2f2f2f;
 
-    --accent: #111111;
-    --accent-foreground: #ffcb74;
+    --accent: #ffcb74;
+    --accent-foreground: #113e21;
 
     --destructive: #ff0000; /* Kept as is, adjust as needed */
     --destructive-foreground: #f6f6f6;
