@@ -3,13 +3,15 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTheme } from 'next-themes';  // Added theme switch import
 
 import { siteConfig } from "@/config/siteConfig";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";  // Assuming Shadcn provides a button component
+import { Button } from "@/components/ui/button";  
 
 export default function MainNav() {
   const pathname = usePathname();
+  const { theme, setTheme } = useTheme();
 
   return (
     <div className="flex justify-between items-center p-4 bg-background shadow-md">
@@ -28,9 +30,14 @@ export default function MainNav() {
           ))}
         </nav>
       </div>
-      <Button className="ml-4 bg-primary text-primary-foreground rounded-full py-2 px-6">
-        Request Appointment
-      </Button>
+      <div className="flex items-center space-x-4"> 
+        <Button className="ml-4 bg-primary text-primary-foreground rounded-full py-2 px-6">
+          Request Appointment
+        </Button>
+        <Button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}> 
+          Switch Theme
+        </Button>
+      </div>
     </div>
   );
 }
