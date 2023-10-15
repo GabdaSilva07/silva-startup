@@ -27,7 +27,7 @@ export default function MainNav() {
   }
 
   const NavLinks = () => (
-    <nav className="md:flex space-x-4 hidden">
+    <nav className={cn("md:flex space-x-4 hidden")}>
       {siteConfig.pages.map((page) => (
         <Link key={page.name} href={page.path} className={cn(
           "hover:text-accent transition-all duration-500 ease-in-out border-b-2",
@@ -40,11 +40,11 @@ export default function MainNav() {
   );
 
   const MobileMenu = () => (
-    <div className="md:hidden flex justify-between items-center w-full mx-2">
-      <Button className={`mobile-menu-button bg-background`}>
-        <RiMenuLine className={`${theme === 'dark' ? 'text-accent' : 'text-accent'} w-8 h-8`} />
+    <div className={cn("md:hidden flex justify-between items-center w-full mx-2")}>
+      <Button className={cn("mobile-menu-button bg-background")}>
+        <RiMenuLine className={cn(`${theme === 'dark' ? 'text-accent' : 'text-accent'} w-8 h-8`)} />
       </Button>
-      <Link href="/" className="text-2xl font-bold uppercase text-accent mx-auto">
+      <Link href="/" className={cn("text-2xl font-bold uppercase text-accent mx-auto")}>
         {siteConfig.name}
       </Link>
     </div>
@@ -61,31 +61,31 @@ export default function MainNav() {
     };
 
     return (
-      <div className={`place-items-center overflow-hidden flex items-center space-x-4 mt-[-0.5rem] md:mt-0  ${theme === 'dark' ? 'bg-background' : ''}`}>
+      <div className={cn(`place-items-center overflow-hidden flex items-center space-x-4 mt-[-0.5rem] md:mt-0  ${theme === 'dark' ? 'bg-background' : ''}`)}>
         {!isMobile && (
-          <Button className="bg-accent text-secondary rounded-full py-2 px-6">
+          <Button className={cn("bg-accent text-secondary rounded-full py-2 px-6")}>
             Request Appointment
           </Button>
         )}
         <Button
           onClick={handleThemeChange}
-          className={`bg-background ${theme === 'dark' ? 'text-black' : 'text-white'} mt-2 md:mt-0`}
+          className={cn(`bg-background ${theme === 'dark' ? 'text-black' : 'text-white'} mt-2 md:mt-0`)}
         >
-          <div className="flex items-center justify-center h-8">
+          <div className={cn("flex items-center justify-center h-8")}>
             <motion.div
               initial={{ y: "-150%" }}
               animate={isAnimating && theme === 'dark' ? { y: ["0%", "-135%"] } : isAnimating && theme === 'light' ? { y: ["135%", "0%"] } : { y: "0%" }}
               transition={{ duration: 0.6 }}
             >
               {theme === 'dark' ?
-                <BiMoon className="text-accent w-8 h-8" /> : null}
+                <BiMoon className={cn("text-accent w-8 h-8")} /> : null}
             </motion.div>
             <motion.div
               initial={{ y: "-150%" }}
               animate={isAnimating && theme === 'light' ? { y: ["0%", "-135%"] } : isAnimating && theme === 'dark' ? { y: ["-135%", "0%"] } : { y: "0%" }}
               transition={{ duration: 0.6 }}
             >
-              {theme === 'light' ? <BiSun className="text-accent w-8 h-8" /> : null}
+              {theme === 'light' ? <BiSun className={cn("text-accent w-8 h-8")} /> : null}
             </motion.div>
           </div>
         </Button>
@@ -94,16 +94,16 @@ export default function MainNav() {
   };
 
   return (
-    <header className="flex justify-between items-center md:px-4 px-2 py-4 bg-background shadow-md md:flex-row">
+    <header className={cn("flex justify-between items-center md:px-4 px-2 py-4 bg-background shadow-md md:flex-row")}>
       {isMobile ? (
         <>
           <MobileMenu />
           <NavButtons />
         </>
       ) : (
-        <div className="flex justify-between items-center w-full">
-          <div className="flex justify-start items-center space-x-12">
-            <Link href="/" className="text-2xl font-bold uppercase text-accent">
+        <div className={cn("flex justify-between items-center w-full")}>
+          <div className={cn("flex justify-start items-center space-x-12")}>
+            <Link href="/" className={cn("text-2xl font-bold uppercase text-accent")}>
               {siteConfig.name}
             </Link>
             <NavLinks />
