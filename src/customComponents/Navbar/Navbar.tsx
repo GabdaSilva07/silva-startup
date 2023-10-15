@@ -39,6 +39,17 @@ export default function MainNav() {
     </nav>
   );
 
+  const MobileMenu = () => (
+    <div className="md:hidden flex justify-between items-center w-full mx-2">
+      <Button className={`mobile-menu-button bg-background`}>
+        <RiMenuLine className={`${theme === 'dark' ? 'text-accent' : 'text-accent'} w-8 h-8`} />
+      </Button>
+      <Link href="/" className="text-2xl font-bold uppercase text-accent mx-auto">
+        {siteConfig.name}
+      </Link>
+    </div>
+  );
+
   const NavButtons = () => {
     const [isAnimating, setIsAnimating] = useState(false);
 
@@ -50,30 +61,31 @@ export default function MainNav() {
     };
 
     return (
-      <div className={`place-items-center overflow-hidden flex items-center space-x-4 md:mt-0 mt-4 ${theme === 'dark' ? 'bg-background' : ''}`}>
-        <Button className="ml-4 bg-accent text-secondary rounded-full py-2 px-6">
-          Request Appointment
-        </Button>
-        <div className="flex-grow" />
+      <div className={`place-items-center overflow-hidden flex items-center space-x-4 mt-[-0.5rem] md:mt-0  ${theme === 'dark' ? 'bg-background' : ''}`}>
+        {!isMobile && (
+          <Button className="bg-accent text-secondary rounded-full py-2 px-6">
+            Request Appointment
+          </Button>
+        )}
         <Button
           onClick={handleThemeChange}
-          className={`bg-background ${theme === 'dark' ? 'text-black' : 'text-white'}`}
+          className={`bg-background ${theme === 'dark' ? 'text-black' : 'text-white'} mt-2 md:mt-0`}
         >
-          <div className="flex items-center justify-center h-6">
+          <div className="flex items-center justify-center h-8">
             <motion.div
               initial={{ y: "-150%" }}
-              animate={isAnimating && theme === 'dark' ? { y: ["0%", "-100%"] } : isAnimating && theme === 'light' ? { y: ["100%", "0%"] } : { y: "0%" }}
+              animate={isAnimating && theme === 'dark' ? { y: ["0%", "-135%"] } : isAnimating && theme === 'light' ? { y: ["135%", "0%"] } : { y: "0%" }}
               transition={{ duration: 0.6 }}
             >
               {theme === 'dark' ?
-                <BiMoon className="text-accent w-6 h-6" /> : null}
+                <BiMoon className="text-accent w-8 h-8" /> : null}
             </motion.div>
             <motion.div
               initial={{ y: "-150%" }}
-              animate={isAnimating && theme === 'light' ? { y: ["0%", "-100%"] } : isAnimating && theme === 'dark' ? { y: ["-100%", "0%"] } : { y: "0%" }}
+              animate={isAnimating && theme === 'light' ? { y: ["0%", "-135%"] } : isAnimating && theme === 'dark' ? { y: ["-135%", "0%"] } : { y: "0%" }}
               transition={{ duration: 0.6 }}
             >
-              {theme === 'light' ? <BiSun className="text-accent w-6 h-6" /> : null}
+              {theme === 'light' ? <BiSun className="text-accent w-8 h-8" /> : null}
             </motion.div>
           </div>
         </Button>
@@ -81,30 +93,24 @@ export default function MainNav() {
     );
   };
 
-  const MobileMenu = () => (
-    <div className="md:hidden flex justify-between items-center w-full mx-6">
-      <Link href="/" className="text-xl font-bold uppercase text-accent">
-        {siteConfig.name}
-      </Link>
-      <Button className="mobile-menu-button">
-        <RiMenuLine className="w-6 h-6" />
-      </Button>
-    </div>
-  );
-
   return (
-    <header className="flex justify-between items-center p-4 bg-background shadow-md md:flex-row">
-      {!isMobile ? (
-        <div className="flex justify-start items-center space-x-12">
-          <Link href="/" className="text-xl font-bold uppercase text-accent">
-            {siteConfig.name}
-          </Link>
-          <NavLinks />
-        </div>
+    <header className="flex justify-between items-center md:px-4 px-2 py-4 bg-background shadow-md md:flex-row">
+      {isMobile ? (
+        <>
+          <MobileMenu />
+          <NavButtons />
+        </>
       ) : (
-        <MobileMenu />
+        <div className="flex justify-between items-center w-full">
+          <div className="flex justify-start items-center space-x-12">
+            <Link href="/" className="text-2xl font-bold uppercase text-accent">
+              {siteConfig.name}
+            </Link>
+            <NavLinks />
+          </div>
+          <NavButtons />
+        </div>
       )}
-      {!isMobile ? <NavButtons /> : null}
     </header>
   );
 }
