@@ -1,5 +1,5 @@
 "use client"
-import * as React from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from 'next-themes';
@@ -8,6 +8,8 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useDeviceDetect } from "@/lib/Hooks/useDeviceDetect";
 import { RiMenuLine } from "react-icons/ri";
+import { Switch } from "@/components/ui/switch";
+import { BiMoon, BiSun } from "react-icons/bi";
 
 
 export default function MainNav() {
@@ -29,12 +31,17 @@ export default function MainNav() {
   );
 
   const NavButtons = () => (
-    <div className="flex items-center space-x-4 md:mt-0 mt-4">
+    <div className={`flex items-center space-x-4 md:mt-0 mt-4 ${theme === 'dark' ? 'bg-background' : ''}`}>
       <Button className="ml-4 bg-accent text-secondary rounded-full py-2 px-6">
         Request Appointment
       </Button>
-      <Button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className={theme === 'dark' ? 'text-black' : 'text-white'}>
-        Switch Theme
+      <Button
+        onClick={() => {
+          setTheme(theme === 'dark' ? 'light' : 'dark');
+        }}
+        className={`bg-background ${theme === 'dark' ? 'text-black' : 'text-white'}`}
+      >
+        {theme === 'dark' ? <BiMoon className="text-accent w-6 h-6" /> : <BiSun className="text-accent w-6 h-6" />}
       </Button>
     </div>
   );
@@ -44,9 +51,9 @@ export default function MainNav() {
       <Link href="/" className="text-xl font-bold uppercase text-accent">
         {siteConfig.name}
       </Link>
-      <button className="mobile-menu-button">
+      <Button className="mobile-menu-button">
         <RiMenuLine className="w-6 h-6" />
-      </button>
+      </Button>
     </div>
   );
 
